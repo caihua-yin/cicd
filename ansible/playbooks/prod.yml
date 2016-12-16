@@ -1,0 +1,22 @@
+- hosts: prod
+  remote_user: vagrant
+  sudo: yes
+  tasks:
+    # JQ
+    - name: JQ is present
+      apt:
+        name: jq
+        force: yes
+
+    # Docker
+    - name: Debian Docker is present
+      apt:
+        name: docker.io
+        state: latest
+        force: yes
+
+    - name: vagrant user is added to the docker group
+      user:
+        name: vagrant
+        group: docker
+      register: user_result
