@@ -1,0 +1,15 @@
+- name: Store service is running
+  docker:
+    name: StoreService
+    ports: 8001:8001
+    image: yinc2/store-service:latest
+    state: started
+  tags: [app, store]
+
+- name: Fibonacci service is running
+  docker:
+    name: FibonacciService
+    ports: 8888:8888
+    image: yinc2/fibonacci-web-service:latest
+    state: started
+  tags: [app, fibonacci]

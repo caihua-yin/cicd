@@ -1,0 +1,7 @@
+- hosts: prod
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - app
