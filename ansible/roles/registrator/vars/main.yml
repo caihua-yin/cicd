@@ -1,0 +1,2 @@
+registrator_protocol: etcd
+registrator_port: 2379
