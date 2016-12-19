@@ -43,6 +43,9 @@ sudo apt-get install -y python-pip
 echo "Install cqlsh(Cassandra client)..."
 sudo pip install cqlsh==4.1.1
 
+echo "Generate SSH key pair..."
+ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa # Alternative way: echo -e "\n\n\n" | ssh-keygen -t rsa
+
 echo "Install postgresql-client-common (where psql included)..."
 sudo apt-get install -y postgresql-client-common
 

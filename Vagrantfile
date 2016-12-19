@@ -12,18 +12,20 @@ Vagrant.configure(2) do |config|
     d.vm.provision :shell, path: "provision/dev.sh"
     d.vm.provider "virtualbox" do |v|
       v.memory = "4096"
-      v.cpus = 8
+      v.cpus = 4
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
   end
 
   # Production
-  config.vm.define "prod" do |d|
-    d.vm.box = "ubuntu/trusty64"
-    d.vm.hostname = "prod"
-    d.vm.network "private_network", ip: "192.168.33.21"
-    d.vm.provider "virtualbox" do |v|
-      v.memory = 1024
+  (1..3).each do |i|
+    config.vm.define "prod0#{i}" do |d|
+      d.vm.box = "ubuntu/trusty64"
+      d.vm.hostname = "prod0#{i}"
+      d.vm.network "private_network", ip: "192.168.33.2#{i}"
+      d.vm.provider "virtualbox" do |v|
+        v.memory = 1024
+      end
     end
   end
 

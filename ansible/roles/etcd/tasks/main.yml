@@ -1,0 +1,30 @@
+- name: Files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ files }}"
+  tags: [etcd]
+
+# Shell module83 is often the last resort since it does not work with states.
+# In most cases, commands run as through shell will not check whether something
+# is in the correct state or not and run every time we execute Ansible playbook.
+# However, etcd always runs only a single instance and there is no risk that
+# multiple executions of this command will produce multiple instances.
+## var {{ ansible_hostname }} is discovered by ansible
+- name: Is running
+  shell: "nohup etcd -name {{ ansible_hostname }} \
+    -initial-advertise-peer-urls \
+    http://{{ ip }}:2380 \
+    -listen-peer-urls \
+    http://{{ ip }}:2380 \
+    -listen-client-urls \
+    http://{{ ip }}:2379,http://127.0.0.1:2379 \
+    -advertise-client-urls \
+    http://{{ ip }}:2379 \
+    -initial-cluster-token {{ cl_token }} \
+    -initial-cluster \
+    {{ cl_node_01 }},{{ cl_node_02 }},{{ cl_node_03 }} \
+    -initial-cluster-state new \
+    >/var/log/etcd.log 2>&1 &"
+  tags: [etcd]

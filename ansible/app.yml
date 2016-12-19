@@ -1,0 +1,7 @@
+- hosts: app
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - app

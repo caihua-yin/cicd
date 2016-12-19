@@ -1,0 +1,15 @@
+files: [
+  {src: 'etcd', dest: '/usr/local/bin/etcd'},
+  {src: 'etcdctl', dest: '/usr/local/bin/etcdctl'}
+]
+
+cl_token: etcd-cluster
+cl_node_01_addr: http://192.168.33.21:2380
+cl_node_01_name: prod01
+cl_node_01: "{{ cl_node_01_name }}={{ cl_node_01_addr }}"
+cl_node_02_addr: http://192.168.33.22:2380
+cl_node_02_name: prod02
+cl_node_02: "{{ cl_node_02_name }}={{ cl_node_02_addr }}"
+cl_node_03_addr: http://192.168.33.23:2380
+cl_node_03_name: prod03
+cl_node_03: "{{ cl_node_03_name }}={{ cl_node_03_addr }}"
