@@ -28,16 +28,19 @@
 - name: Debian docker-py is present
   pip:
     name: docker-py
-    version: 1.6.0
+    version: 1.7.0
     state: present
   tags: [docker]
 
 - name: DockerUI is running
-  docker:
+  docker_container:
     image: uifd/ui-for-docker
     name: dockerui
     ports: 9000:9000
     privileged: yes
+    env:
+      SERVICE_NAME: docker
+      SERVICE_ID: ui
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   when: not skip_ui is defined
