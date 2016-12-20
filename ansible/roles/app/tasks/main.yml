@@ -5,8 +5,8 @@
     image: yinc2/store-service:latest
     state: started
     env:
-      SERVICE_NAME: app
-      SERVICE_ID: store
+      SERVICE_NAME: store
+      SERVICE_ID: "{{ ansible_hostname }}-store"
   tags: [app, store]
 
 - name: Fibonacci service is running
@@ -16,6 +16,6 @@
     image: yinc2/fibonacci-web-service:latest
     state: started
     env:
-      SERVICE_NAME: app
-      SERVICE_ID: fibonacci
+      SERVICE_NAME: fibonacci
+      SERVICE_ID: "{{ ansible_hostname }}-fibonacci"
   tags: [app, fibonacci]

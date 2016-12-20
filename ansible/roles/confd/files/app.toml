@@ -2,6 +2,6 @@
 src = "app.yml.tmpl"
 dest = "/tmp/app.yml"
 keys = [
-    "/app/store",
-    "/app/fibonacci"
+    "/store/prod01-store",
+    "/fibonacci/prod01-fibonacci"
 ]

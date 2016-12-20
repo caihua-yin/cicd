@@ -28,7 +28,7 @@
 - name: Debian docker-py is present
   pip:
     name: docker-py
-    version: 1.7.0
+    version: 1.10.6
     state: present
   tags: [docker]
 
@@ -38,10 +38,11 @@
     name: dockerui
     ports: 9000:9000
     privileged: yes
+    state: started
     env:
-      SERVICE_NAME: docker
-      SERVICE_ID: ui
+      SERVICE_NAME: dockerui
+      SERVICE_ID: "{{ ansible_hostname }}-dockerui"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   when: not skip_ui is defined
-  tags: [docker]
+  tags: [docker, dockerui]

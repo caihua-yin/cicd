@@ -1,0 +1,12 @@
+- hosts: consul-registrator
+  remote_user: vagrant
+  become: true
+  vars:
+    - registrator_name: registrator-consul
+    - registrator_protocol: consul
+    - registrator_port: 8500
+  roles:
+    - common
+    - docker
+    - consul
+    - registrator

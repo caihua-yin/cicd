@@ -1,4 +1,4 @@
-- hosts: etcd
+- hosts: etcd-registrator-confd
   remote_user: vagrant
   become: true
   roles:
