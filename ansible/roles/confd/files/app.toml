@@ -1,0 +1,7 @@
+[template]
+src = "app.yml.tmpl"
+dest = "/tmp/app.yml"
+keys = [
+    "/app/store",
+    "/app/fibonacci"
+]

@@ -11,7 +11,7 @@
 
 - name: Fibonacci service is running
   docker_container:
-    name: store
+    name: fibonacci
     ports: 8888:8888
     image: yinc2/fibonacci-web-service:latest
     state: started

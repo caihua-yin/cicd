@@ -1,0 +1,9 @@
+directories:
+  - /etc/confd/conf.d
+  - /etc/confd/templates
+
+files: [
+  { src: 'app.toml', dest: '/etc/confd/conf.d/app.toml', mode: '0644' },
+  { src: 'app.yml.tmpl', dest: '/etc/confd/templates/app.yml.tmpl', mode: '0644' },
+  { src: 'confd', dest: '/usr/local/bin/confd', mode: '0755' }
+]

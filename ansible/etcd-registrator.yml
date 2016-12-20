@@ -1,8 +1,0 @@
-- hosts: etcd
-  remote_user: vagrant
-  become: true
-  roles:
-    - common
-    - etcd
-    - docker
-    - registrator
