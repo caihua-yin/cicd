@@ -36,6 +36,7 @@ export GOROOT=/usr/local/go
 export GOPATH=$HOME/gopath
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 EOL
+rm -f go$VERSION.$OS-$ARCH.tar.gz
 
 echo "Install python-pip..."
 sudo apt-get install -y python-pip
@@ -54,3 +55,6 @@ sudo apt-get install -y jq
 
 echo "Install apt-file..."
 sudo apt-get install -y apt-file
+
+echo "Install unzip..."
+sudo apt-get install -y unzip

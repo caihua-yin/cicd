@@ -1,1 +1,2 @@
 ip: "{{ facter_ipaddress_eth1 }}"
+debian_version: trusty
