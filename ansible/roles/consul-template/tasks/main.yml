@@ -1,0 +1,13 @@
+- name: Directory is created
+  file:
+    path: /data/consul-template
+    state: directory
+  tags: [consul-template]
+
+- name: App config template is copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
+  with_items: "{{ files }}"
+  tags: [consul-template]

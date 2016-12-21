@@ -1,6 +1,6 @@
 [template]
 src = "app.yml.tmpl"
-dest = "/tmp/app.yml"
+dest = "/tmp/app-config-by-confd.yml"
 keys = [
     "/store/prod01-store",
     "/fibonacci/prod01-fibonacci"

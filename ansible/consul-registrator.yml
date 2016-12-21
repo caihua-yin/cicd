@@ -10,3 +10,4 @@
     - docker
     - consul
     - registrator
+    - consul-template

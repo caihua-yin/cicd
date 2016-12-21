@@ -1,0 +1,4 @@
+files: [
+  { src: 'consul-template', dest: '/usr/local/bin/consul-template', mode: '0755'},
+  { src: 'app.yml.ctmpl', dest: '/data/consul-template/app.yml.ctmpl', mode: '0644'},
+]
