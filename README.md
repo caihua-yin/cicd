@@ -6,8 +6,10 @@ Run following commands to prepare dev and prod environments:
 # Ansible playbooks
 Run following commands on dev node (CWD as /vagrant/github.com/caihua-yin/cicd/ansible/):
 - `ansible-playbook yinc2-cloud.yml -i inventory/prod`: Deploy consul, registrator, nginx, and apps(store, fibonacci) to all of three prod nodes.
+## Alternatives:
 - `ansible-playbook etcd-registrator-confd.yml -i inventory/prod`: Deploy etcd, registrator (with etcd protocol) and confd to all of the three prod nodes. An alternative solution for service registery and discovery, equivalent to consul+registrator+consul-template.
     - For confd, only *onetime* mode is supported currently, need run `confd -onetime -backend etcd -node 192.168.33.21:2379`
+- `ansible-playbook haproxy.yml -i inventory/prod`: Deploy haproxy to all of three prod nodes. An alternative solution for nginx.
 
 # Test
 Use following commands to send request to specific app:
@@ -15,7 +17,11 @@ Use following commands to send request to specific app:
 - Store:
     - `curl -XPOST http://localhost:8001/store/items -H "Content-Type: application/json" -d '{"brand":"apple", "name":"iPhone7", "description":"The latest iphone"}'`
     - `curl http://localhost:8001/store/items/d9494812-6154-4ac6-9177-5e6ee3eb648b`
-Or send to nginx without any port info.
+
+To use proxy, replace port as follows:
+- nginx: 80
+- haproxy: 8000
 
 # TODO
 - ansible/roles/consul-template/tasks/main.yml
+- use random port for store and fibonacci

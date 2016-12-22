@@ -1,0 +1,15 @@
+frontend app-fe
+    bind *:80
+    option http-server-close
+    acl url_store path_beg /store
+    acl url_fibonacci path_beg /fibonacci
+    use_backend store-be if url_store
+    use_backend fibonacci-be if url_fibonacci
+backend store-be
+    {{range service "store" "any"}}
+    server {{.Node}}_{{.Port}} {{.Address}}:{{.Port}} check
+    {{end}}
+backend fibonacci-be
+    {{range service "fibonacci" "any"}}
+    server {{.Node}}_{{.Port}} {{.Address}}:{{.Port}} check
+    {{end}}

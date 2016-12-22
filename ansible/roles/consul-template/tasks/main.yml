@@ -19,8 +19,9 @@
   with_items: "{{ files }}"
   tags: [consul-template]
 
-# TODO: Refine this command
-- name: Config file is updated based on data in consul and template
+# TODO: Refine the following commands
+# For nginx config
+- name: Config nginx-upstreams.conf is generated based on data in consul and template
   shell: "consul-template -once \
           -template '/data/consul-template/nginx-upstreams.ctmpl:/data/nginx/upstreams/nginx-upstreams.conf' \
           -consul 192.168.33.21:8500"
@@ -29,3 +30,13 @@
 - name: Nginx is reloaded
   shell: "docker kill -s HUP nginx"
   tags: [consul-template, nginx]
+
+# For haproxy config
+# Haproxy has no reload signal handling, we use its customized feature so it will reload automatically (based on inotify)
+- name: Config haproxy.conf is generated based on data in consul and template
+  shell: "consul-template -once \
+          -template '/data/consul-template/haproxy.ctmpl:/data/haproxy/config/haproxy.cfg.append' \
+          -consul 192.168.33.21:8500 && \
+          cat /data/haproxy/config/haproxy.cfg.orig /data/haproxy/config/haproxy.cfg.append > /data/haproxy/config/haproxy.cfg"
+  tags: [consul-template, haproxy]
+

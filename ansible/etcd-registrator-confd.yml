@@ -1,3 +1,5 @@
+# Alernative solution for consul+register+consul-template in terms of service registery and discovery,
+# and configuration key-value store.
 - hosts: etcd-registrator-confd
   remote_user: vagrant
   become: true

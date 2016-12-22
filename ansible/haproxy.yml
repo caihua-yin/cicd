@@ -1,0 +1,8 @@
+# Alternative solution for nginx
+- hosts: haproxy
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - haproxy

@@ -1,3 +1,4 @@
 files: [
-  { src: 'nginx-upstreams.ctmpl', dest: '/data/consul-template/nginx-upstreams.ctmpl', mode: '0644'}
+  { src: 'nginx-upstreams.ctmpl', dest: '/data/consul-template/nginx-upstreams.ctmpl', mode: '0644'},
+  { src: 'haproxy.ctmpl', dest: '/data/consul-template/haproxy.ctmpl', mode: '0644'}
 ]

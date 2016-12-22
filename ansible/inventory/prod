@@ -7,3 +7,6 @@
 [yinc2-cluster]
 192.168.33.21 consul_extra="-server -bootstrap -ui"
 192.168.33.2[2:3] consul_server_ip="192.168.33.21" consul_extra=""
+
+[haproxy]
+192.168.33.2[1:3]
