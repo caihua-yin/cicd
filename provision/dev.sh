@@ -41,6 +41,9 @@ rm -f go$VERSION.$OS-$ARCH.tar.gz
 echo "Install python-pip..."
 sudo apt-get install -y python-pip
 
+echo "Install virtualenv..."
+sudo pip install virtualenv
+
 echo "Install cqlsh(Cassandra client)..."
 sudo pip install cqlsh==4.1.1
 
@@ -58,3 +61,11 @@ sudo apt-get install -y apt-file
 
 echo "Install unzip..."
 sudo apt-get install -y unzip
+
+HOSTS="/etc/hosts"
+echo "Update $HOSTS..."
+grep 192.168.33.21 $HOSTS || cat >> $HOSTS << EOL
+192.168.33.21 prod01
+192.168.33.22 prod02
+192.168.33.23 prod03
+EOL
