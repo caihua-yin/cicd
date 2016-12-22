@@ -1,9 +1,0 @@
-store:
-{{range service "store"}}
-  - {{.Address}}:{{.Port}}
-{{end}}
-
-fibonacci:
-{{range service "fibonacci"}}
-  - {{.Address}}:{{.Port}}
-{{end}}

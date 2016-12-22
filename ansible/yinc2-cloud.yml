@@ -1,4 +1,4 @@
-- hosts: consul-registrator
+- hosts: yinc2-cluster
   remote_user: vagrant
   become: true
   vars:
@@ -8,6 +8,8 @@
   roles:
     - common
     - docker
+    - app
     - consul
     - registrator
+    - nginx
     - consul-template
