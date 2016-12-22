@@ -4,10 +4,28 @@
     state: directory
   tags: [consul-template]
 
-- name: App config template is copied
+- name: Binary file is copied
+  copy:
+    src: consul-template
+    dest: /usr/local/bin/consul-template
+    mode: 0755
+  tags: [consul-template]
+
+- name: Config templates is copied
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "{{ item.mode }}"
   with_items: "{{ files }}"
   tags: [consul-template]
+
+# TODO: Refine this command
+- name: Config file is updated based on data in consul and template
+  shell: "consul-template -once \
+          -template '/data/consul-template/nginx-upstreams.ctmpl:/data/nginx/upstreams/nginx-upstreams.conf' \
+          -consul 192.168.33.21:8500"
+  tags: [consul-template, nginx]
+
+- name: Nginx is reloaded
+  shell: "docker kill -s HUP nginx"
+  tags: [consul-template, nginx]

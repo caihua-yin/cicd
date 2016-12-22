@@ -1,0 +1,10 @@
+upstream store {
+    {{range service "store" "any"}}
+    server {{.Address}}:{{.Port}};
+    {{end}}
+}
+upstream fibonacci {
+    {{range service "fibonacci" "any"}}
+    server {{.Address}}:{{.Port}};
+    {{end}}
+}
