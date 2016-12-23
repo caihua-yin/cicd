@@ -17,6 +17,11 @@ grep "$docker_repo" $docker_repo_file || \
         sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D && \
         sudo apt-get update)
 sudo apt-get install -y docker-engine
+# Add user `vagrant` to a secondary group `docker`, so it can execute docker client command without sudo
+sudo usermod -a -G docker vagrant
+# Script to remove stopped containers and dangling images
+sudo ln -s /vagrant/github.com/caihua-yin/cicd/provision/bins/remove_dangling_images.sh /usr/local/bin/remove_dangling_images.sh
+sudo ln -s /vagrant/github.com/caihua-yin/cicd/provision/bins/remove_stopped_containers.sh /usr/local/bin/remove_stopped_containers.sh
 
 echo "Install docker compose..."
 sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
