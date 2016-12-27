@@ -1,7 +1,7 @@
-- hosts: statsd-influxdb-grafana
+- hosts: collectd
   remote_user: vagrant
   become: true
   roles:
     - common
     - docker
-    - statsd-influxdb-grafana
+    - collectd

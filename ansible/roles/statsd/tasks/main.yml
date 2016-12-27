@@ -1,0 +1,23 @@
+- name: Directories are present
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: vagrant
+  with_items: "{{ directories }}"
+  tags: [monitoring, statsd]
+
+- name: Files are present
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ files }}"
+  tags: [monitoring, statsd]
+
+- name: Container is running
+  docker_container:
+    image: yinc2/statsd
+    name: statsd
+    state: started
+    ports: "{{ ports }}"
+    volumes: "{{ volumes }}"
+  tags: [monitoring, statsd]

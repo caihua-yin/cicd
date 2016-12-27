@@ -1,0 +1,41 @@
+- name: Directories are present
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: vagrant
+  with_items: "{{ directories }}"
+  tags: [monitoring, influxdb]
+
+- name: Files are present
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ files }}"
+  tags: [monitoring, influxdb]
+
+- name: Container is running
+  docker_container:
+    image: tutum/influxdb:0.9 # Although the latest influxdb is 1.1, the statsd-influxdb-backend only support 0.9 currently
+    name: influxdb
+    state: started
+    ports: "{{ ports }}"
+    volumes: "{{ volumes }}"
+  tags: [monitoring, influxdb]
+
+- name: InfluxDB client is present
+  pip:
+    name: influxdb
+    state: present
+  tags: [monitoring, influxdb]
+
+- pause:
+    seconds: 2  # Sleep 2s to wait influxdb service to be ready
+    tags: [monitoring, influxdb]
+
+- name: Databases are created
+  influxdb_database:
+    hostname: "{{ ip }}"
+    database_name: "{{ item }}"
+    state: present
+  with_items: "{{ databases }}"
+  tags: [monitoring, influxdb]

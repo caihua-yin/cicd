@@ -1,0 +1,23 @@
+- hosts: influxdb
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - influxdb
+
+- hosts: statsd
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - statsd
+
+- hosts: grafana
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - grafana

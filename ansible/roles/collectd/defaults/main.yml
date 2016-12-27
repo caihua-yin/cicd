@@ -1,0 +1,10 @@
+directories:
+  - /data/collectd
+
+files: [
+  {src: 'collectd.conf', dest: '/data/collectd/collectd.conf'}
+]
+
+volumes:
+  - /data/collectd:/opt/collectd/etc
+

@@ -1,0 +1,16 @@
+- name: Directories are present
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: vagrant
+  with_items: "{{ directories }}"
+  tags: [monitoring, grafana]
+
+- name: Container is running
+  docker_container:
+    image: grafana/grafana:4.0.2
+    name: grafana
+    state: started
+    ports: "{{ ports }}"
+    volumes: "{{ volumes }}"
+  tags: [monitoring, grafana]

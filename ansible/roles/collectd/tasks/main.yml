@@ -1,0 +1,23 @@
+- name: Directories are present
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: vagrant
+  with_items: "{{ directories }}"
+  tags: [monitoring, collectd]
+
+- name: Files are present
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ files }}"
+  tags: [monitoring, collectd]
+
+- name: Container is running
+  docker_container:
+    image: yaronr/collectd
+    name: collectd
+    state: started
+    command: /opt/collectd/sbin/collectd -f # Overwirte the default command
+    volumes: "{{ volumes }}"
+  tags: [monitoring, collectd]

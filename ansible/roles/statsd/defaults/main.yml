@@ -1,0 +1,12 @@
+ports:
+  - '8125:8125/udp'
+
+directories:
+  - /data/statsd
+
+files: [
+  {src: 'config.js', dest: '/data/statsd/config.js'}
+]
+
+volumes:
+  - /data/statsd/config.js:/statsd/config.js
