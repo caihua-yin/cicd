@@ -1,6 +1,0 @@
-ports:
-  - '3000:9000' # grafana
-  - '8083:8083' # influxdb admin
-  - '8086:8086' # influxdb api
-  - '25826:25826' # influxdb collectd
-  - '8125:8125/udp' # statsd

@@ -1,4 +1,5 @@
 # Monitoring And Alerting
+# influxdb is depened by statsd, collectd and grafana
 - hosts: influxdb
   remote_user: vagrant
   become: true

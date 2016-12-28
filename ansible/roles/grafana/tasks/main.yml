@@ -4,7 +4,7 @@
     state: directory
     owner: vagrant
   with_items: "{{ directories }}"
-  tags: [monitoring, grafana]
+  tags: [grafana]
 
 - name: Container is running
   docker_container:
@@ -13,4 +13,4 @@
     state: started
     ports: "{{ ports }}"
     volumes: "{{ volumes }}"
-  tags: [monitoring, grafana]
+  tags: [grafana]

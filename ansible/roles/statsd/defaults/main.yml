@@ -5,7 +5,7 @@ directories:
   - /data/statsd
 
 files: [
-  {src: 'config.js', dest: '/data/statsd/config.js'}
+  {src: 'statsd-config.ctmpl', dest: '/data/consul-template/statsd-config.ctmpl'},
 ]
 
 volumes:

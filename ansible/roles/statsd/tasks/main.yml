@@ -4,14 +4,20 @@
     state: directory
     owner: vagrant
   with_items: "{{ directories }}"
-  tags: [monitoring, statsd]
+  tags: [statsd]
 
 - name: Files are present
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   with_items: "{{ files }}"
-  tags: [monitoring, statsd]
+  tags: [statsd]
+
+- name: Config config.js is generated based on data in consul and template
+  shell: "consul-template -once \
+          -template '/data/consul-template/statsd-config.ctmpl:/data/statsd/config.js' \
+          -consul {{ consul_master_address }}"
+  tags: [statsd]
 
 - name: Container is running
   docker_container:
@@ -20,4 +26,4 @@
     state: started
     ports: "{{ ports }}"
     volumes: "{{ volumes }}"
-  tags: [monitoring, statsd]
+  tags: [statsd]

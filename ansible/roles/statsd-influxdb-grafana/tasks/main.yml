@@ -1,7 +1,0 @@
-- name: Container is running
-  docker_container:
-    image: samuelebistoletti/docker-statsd-influxdb-grafana:1.0.2
-    name: monitoring
-    state: started
-    ports: "{{ ports }}"
-  tags: [monitoring]

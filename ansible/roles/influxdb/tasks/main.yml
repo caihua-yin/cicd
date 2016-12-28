@@ -4,14 +4,14 @@
     state: directory
     owner: vagrant
   with_items: "{{ directories }}"
-  tags: [monitoring, influxdb]
+  tags: [influxdb]
 
 - name: Files are present
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   with_items: "{{ files }}"
-  tags: [monitoring, influxdb]
+  tags: [influxdb]
 
 - name: Container is running
   docker_container:
@@ -20,17 +20,17 @@
     state: started
     ports: "{{ ports }}"
     volumes: "{{ volumes }}"
-  tags: [monitoring, influxdb]
+  tags: [influxdb]
 
 - name: InfluxDB client is present
   pip:
     name: influxdb
     state: present
-  tags: [monitoring, influxdb]
+  tags: [influxdb]
 
 - pause:
     seconds: 2  # Sleep 2s to wait influxdb service to be ready
-    tags: [monitoring, influxdb]
+    tags: [influxdb]
 
 - name: Databases are created
   influxdb_database:
@@ -38,4 +38,4 @@
     database_name: "{{ item }}"
     state: present
   with_items: "{{ databases }}"
-  tags: [monitoring, influxdb]
+  tags: [influxdb]
