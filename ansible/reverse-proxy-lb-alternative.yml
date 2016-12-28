@@ -1,0 +1,8 @@
+# Alternative solution for nginx
+- hosts: reverse-proxy-lb
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - haproxy

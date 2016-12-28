@@ -1,0 +1,9 @@
+# Reverse Proxy and Load Balancing
+- hosts: reverse-proxy-lb
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - nginx
+

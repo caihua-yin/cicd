@@ -1,7 +1,9 @@
-- hosts: collectd
+# Applications
+- hosts: app
   remote_user: vagrant
   become: true
   roles:
     - common
     - docker
-    - collectd
+    - app
+

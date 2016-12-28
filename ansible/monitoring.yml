@@ -1,3 +1,4 @@
+# Monitoring And Alerting
 - hosts: influxdb
   remote_user: vagrant
   become: true
@@ -5,6 +6,15 @@
     - common
     - docker
     - influxdb
+
+# FIXME
+- hosts: collectd
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - collectd
 
 - hosts: statsd
   remote_user: vagrant
@@ -21,3 +31,4 @@
     - common
     - docker
     - grafana
+

@@ -10,7 +10,8 @@ directories:
 
 files: [
   {src: 'services.conf', dest: '/data/nginx/conf.d/services.conf'},
-  {src: 'app.conf', dest: '/data/nginx/includes/app.conf'}
+  {src: 'app.conf', dest: '/data/nginx/includes/app.conf'},
+  {src: 'nginx-upstreams.ctmpl', dest: '/data/consul-template/nginx-upstreams.ctmpl'}
 ]
 
 volumes:

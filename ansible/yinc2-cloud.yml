@@ -1,4 +1,13 @@
+# Common Dependency
 - hosts: yinc2-cluster
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+
+# Service Registry-Discovery And Configuration Management
+- hosts: service-registry-discovery-config-mgmt
   remote_user: vagrant
   become: true
   vars:
@@ -8,8 +17,59 @@
   roles:
     - common
     - docker
-    - app
     - consul
     - registrator
-    - nginx
     - consul-template
+
+# Applications
+- hosts: app
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - app
+
+# Reverse Proxy and Load Balancing
+- hosts: reverse-proxy-lb
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - nginx
+
+# Monitoring And Alerting
+- hosts: influxdb
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - influxdb
+
+# FIXME
+- hosts: collectd
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - collectd
+
+- hosts: statsd
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - statsd
+
+- hosts: grafana
+  remote_user: vagrant
+  become: true
+  roles:
+    - common
+    - docker
+    - grafana
+

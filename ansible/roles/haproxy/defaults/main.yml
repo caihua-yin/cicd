@@ -5,10 +5,6 @@ directories:
   - /data/haproxy/config
 
 files: [
-  {src: 'haproxy.cfg.orig', dest: '/data/haproxy/config/haproxy.cfg.orig'}
+  {src: 'haproxy.cfg.orig', dest: '/data/haproxy/config/haproxy.cfg.orig'},
+  {src: 'haproxy.ctmpl', dest: '/data/consul-template/haproxy.ctmpl'}
 ]
-
-templates: [
-  {src: 'haproxy.cfg', dest: '/data/haproxy/config/haproxy.cfg', force: 'no'}
-]
-

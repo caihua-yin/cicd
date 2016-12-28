@@ -20,11 +20,17 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
   with_items: "{{ files }}"
-  register: result
+  tags: [nginx]
+
+# Here not putting upstream update before containering running is to handle the scenario that apps are changed after nginx is running
+# So only need update upstream and reload nginx
+- name: Config nginx-upstreams.conf is generated based on data in consul and template
+  shell: "consul-template -once \
+          -template '/data/consul-template/nginx-upstreams.ctmpl:/data/nginx/upstreams/nginx-upstreams.conf' \
+          -consul {{ consul_master_address }}"
   tags: [nginx]
 
 - name: Container is reloaded
   shell: docker kill -s HUP nginx
-  when: result|changed
   tags: [nginx]
 

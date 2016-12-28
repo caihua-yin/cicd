@@ -14,6 +14,15 @@
   register: result
   tags: [haproxy]
 
+# Haproxy has no reload signal handling, we use its customized feature so it will reload automatically if it's running there
+# (based on inotify mechanism)
+- name: Config haproxy.conf is generated based on data in consul and template
+  shell: "consul-template -once \
+          -template '/data/consul-template/haproxy.ctmpl:/data/haproxy/config/haproxy.cfg.append' \
+          -consul {{ consul_master_address }} && \
+          cat /data/haproxy/config/haproxy.cfg.orig /data/haproxy/config/haproxy.cfg.append > /data/haproxy/config/haproxy.cfg"
+  tags: [haproxy]
+
 - name: Container is running
   docker_container:
     image: million12/haproxy # Not use the official image here because this image support automatic reload based on inotify mechanim, while official one need restart

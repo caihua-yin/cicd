@@ -1,8 +1,8 @@
-# Alternative solution for nginx
-- hosts: haproxy
+# Common Dependency
+- hosts: yinc2-cluster
   remote_user: vagrant
   become: true
   roles:
     - common
     - docker
-    - haproxy
+
