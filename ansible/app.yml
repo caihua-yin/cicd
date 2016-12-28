@@ -1,9 +1,13 @@
 # Applications
-- hosts: app
+- hosts: app-fibonacci
   remote_user: vagrant
   become: true
   roles:
-    - common
-    - docker
-    - app
+    - fibonacci
+
+- hosts: app-store
+  remote_user: vagrant
+  become: true
+  roles:
+    - store
 

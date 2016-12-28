@@ -7,8 +7,6 @@
     - registrator_protocol: consul
     - registrator_port: 8500
   roles:
-    - common
-    - docker
     - consul
     - registrator
     - consul-template

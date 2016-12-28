@@ -1,0 +1,10 @@
+- name: Store service is running
+  docker_container:
+    name: store
+    ports: 8001:8001
+    image: yinc2/store-service:latest
+    state: started
+    env:
+      SERVICE_NAME: store
+      SERVICE_ID: "{{ ansible_hostname }}-store"
+  tags: [store]

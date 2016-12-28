@@ -1,0 +1,10 @@
+- name: Fibonacci service is running
+  docker_container:
+    name: fibonacci
+    ports: 8888:8888
+    image: yinc2/fibonacci-web-service:latest
+    state: started
+    env:
+      SERVICE_NAME: fibonacci
+      SERVICE_ID: "{{ ansible_hostname }}-fibonacci"
+  tags: [fibonacci]

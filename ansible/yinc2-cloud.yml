@@ -15,31 +15,32 @@
     - registrator_protocol: consul
     - registrator_port: 8500
   roles:
-    - common
-    - docker
     - consul
     - registrator
     - consul-template
 
 # Applications
-- hosts: app
+- hosts: app-fibonacci
   remote_user: vagrant
   become: true
   roles:
-    - common
-    - docker
-    - app
+    - fibonacci
+
+- hosts: app-store
+  remote_user: vagrant
+  become: true
+  roles:
+    - store
 
 # Reverse Proxy and Load Balancing
 - hosts: reverse-proxy-lb
   remote_user: vagrant
   become: true
   roles:
-    - common
-    - docker
     - nginx
 
 # Monitoring And Alerting
+# influxdb is depened by statsd, collectd and grafana
 - hosts: influxdb
   remote_user: vagrant
   become: true
