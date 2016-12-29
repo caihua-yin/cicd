@@ -1,0 +1,12 @@
+- name: Container is running
+  docker_container:
+    image: sstarcher/statsite
+    name: statsite
+    state: started
+    ports: "8125:8125/udp"
+    env:
+      STREAM_CMD: "python /bin/sinks/influxdb.py /conf/influxdb.ini INFO"
+      INFLUXDB_HOST: 192.168.33.21
+      INFLUXDB_PORT: 8086
+      INFLUXDB_DB: statsite
+  tags: [statsite]

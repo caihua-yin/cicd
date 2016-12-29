@@ -13,6 +13,11 @@
   with_items: "{{ files }}"
   tags: [collectd]
 
+- name: Config collectd is generated based on data in consul and template
+  shell: "consul-template -once \
+          -template '/data/consul-template/collectd.ctmpl:/data/collectd/collectd.conf'"
+  tags: [collectd]
+
 - name: Container is running
   docker_container:
     image: yaronr/collectd
@@ -20,4 +25,4 @@
     state: started
     command: /opt/collectd/sbin/collectd -f # Overwirte the default command
     volumes: "{{ volumes }}"
-  tags: [monitoring, collectd]
+  tags: [collectd]

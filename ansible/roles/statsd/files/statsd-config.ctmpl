@@ -5,7 +5,7 @@
   backends: [ "statsd-influxdb-backend" ],
 
   influxdb: {
-    {{range service "influxdb-8086" "any"}}
+    {{range service "influxdb-8086"}}
     host: '{{.Address}}',   // InfluxDB host. (default 127.0.0.1)
     {{end}}
     port: 8086,          // InfluxDB port. (default 8086)

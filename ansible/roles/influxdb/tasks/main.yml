@@ -15,7 +15,7 @@
 
 - name: Container is running
   docker_container:
-    image: tutum/influxdb:0.9 # Although the latest influxdb is 1.1, the statsd-influxdb-backend only support 0.9 currently
+    image: influxdb:1.1.1 #tutum/influxdb:0.9 # Although the latest influxdb is 1.1, the statsd-influxdb-backend only support 0.9 currently
     name: influxdb
     state: started
     ports: "{{ ports }}"

@@ -4,32 +4,25 @@
   remote_user: vagrant
   become: true
   roles:
-    - common
-    - docker
     - influxdb
 
-# FIXME
 - hosts: collectd
   remote_user: vagrant
   become: true
   roles:
-    - common
-    - docker
     - collectd
 
-- hosts: statsd
+# The influxdb backend of statsd does not support latest influxdb (1.1.1),
+# replace it with statsite, which has compatible API and better performance
+- hosts: statsite
   remote_user: vagrant
   become: true
   roles:
-    - common
-    - docker
-    - statsd
+    - statsite
 
 - hosts: grafana
   remote_user: vagrant
   become: true
   roles:
-    - common
-    - docker
     - grafana
 

@@ -1,0 +1,9 @@
+Hostname {{with node}}{{.Node.Node}}{{end}}
+LoadPlugin cpu
+LoadPlugin memory
+LoadPlugin network
+<Plugin network>
+    {{range service "influxdb-25826"}}
+    Server "{{.Address}}" "25826"
+    {{end}}
+</Plugin>

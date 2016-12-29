@@ -1,5 +1,5 @@
 databases:
-  - statsd
+  - statsite
   - collectd
 
 ports:
@@ -8,12 +8,14 @@ ports:
   - '25826:25826/udp'
 
 directories:
-  - /data/influxdb/etc
+  - /data/influxdb
 
 files: [
-  {src: 'influxdb.conf', dest: '/data/influxdb/influxdb.conf'}
+  {src: 'influxdb_1.1.1.conf', dest: '/data/influxdb/influxdb.conf'},
+  {src: 'types.db', dest: '/data/influxdb/types.db'}
 ]
 
 volumes:
   - /data/influxdb:/var/lib/influxdb
   - /data/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf
+  - /data/influxdb/types.db:/usr/share/collectd/types.db

@@ -2,7 +2,7 @@ directories:
   - /data/collectd
 
 files: [
-  {src: 'collectd.conf', dest: '/data/collectd/collectd.conf'}
+  {src: 'collectd.ctmpl', dest: '/data/consul-template/collectd.ctmpl'}
 ]
 
 volumes:
