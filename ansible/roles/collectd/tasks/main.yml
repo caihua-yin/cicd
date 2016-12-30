@@ -20,9 +20,8 @@
 
 - name: Container is running
   docker_container:
-    image: yaronr/collectd
+    image: yinc2/collectd
     name: collectd
     state: started
-    command: /opt/collectd/sbin/collectd -f # Overwirte the default command
     volumes: "{{ volumes }}"
   tags: [collectd]

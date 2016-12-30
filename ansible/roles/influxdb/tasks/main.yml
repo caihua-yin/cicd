@@ -39,3 +39,14 @@
     state: present
   with_items: "{{ databases }}"
   tags: [influxdb]
+
+- name: Retention policies are created
+  influxdb_retention_policy:
+    hostname: "{{ ip }}"
+    database_name: "{{ item }}"
+    policy_name: one_week_retention
+    default: true
+    duration: 1w    # 1w as one week, 1d as one day, 1h as one hour
+    replication: 1
+  with_items: "{{ databases }}"
+  tags: [influxdb]

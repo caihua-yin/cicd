@@ -69,7 +69,6 @@ To use proxy, replace port as follows:
 - haproxy: 8000
 
 # TODO
-- use random port for store and fibonacci
 - explore alerting feature of grafana
 - use grafana API to auto create data source and dashboard
-- create retention policy to influxdb
+- use random port for store and fibonacci
