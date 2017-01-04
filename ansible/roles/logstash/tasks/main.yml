@@ -1,0 +1,32 @@
+- name: Directories are present
+  file:
+    dest: "{{ item.path }}"
+    state: directory
+    owner: vagrant
+    mode: "{{ item.mode }}"
+  with_items: "{{ directories }}"
+  tags: [logstash]
+
+- name: Files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ files }}"
+  tags: [logstash]
+
+- name: Container is running
+  docker_container:
+    name: logstash
+    image: logstash:5.1.1
+    state: started
+    hostname: "{{ ansible_hostname }}"
+    ports:
+      - 25826:25826/udp # for rsyslog
+      - 25827:25827/udp # for collectd
+    volumes:
+      - /data/logstash/conf:/conf
+      - /data/logstash/logs:/logs
+    links:
+      - elasticsearch:db
+    command: logstash -f /conf/{{ logstash_config }}
+  tags: [logstash]

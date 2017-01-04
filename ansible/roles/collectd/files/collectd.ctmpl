@@ -23,7 +23,9 @@ LoadPlugin memory
 
 LoadPlugin network
 <Plugin network>
-    {{range service "influxdb-25826"}}
-    Server "{{.Address}}" "25826"
-    {{end}}
+    # Influxdb
+    {{range service "influxdb-25826"}}Server "{{.Address}}" "25826"{{end}}
+
+    # Logstash
+    {{range service "logstash-25827"}}Server "{{.Address}}" "25827"{{end}}
 </Plugin>

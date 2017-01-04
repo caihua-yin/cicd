@@ -4,6 +4,9 @@
     ports: 8001:8001
     image: yinc2/store-service:latest
     state: started
+    log_driver: syslog # Change docker log driver from default json_file to syslog
+    log_opt:
+        tag: store
     env:
       SERVICE_NAME: store
       SERVICE_ID: "{{ ansible_hostname }}-store"

@@ -1,3 +1,4 @@
 ip: "{{ facter_ipaddress_eth1 }}"
 debian_version: trusty
 consul_master_address: 192.168.33.21:8500
+elk_address: 192.168.33.22

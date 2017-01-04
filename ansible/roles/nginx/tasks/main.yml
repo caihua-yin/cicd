@@ -13,6 +13,9 @@
     state: started
     ports: "{{ ports }}"
     volumes: "{{ volumes }}"
+    log_driver: syslog  # Change docker log driver from default json_file to syslog
+    log_opt:
+      tag: nginx
   tags: [nginx]
 
 - name: Files are present

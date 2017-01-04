@@ -1,3 +1,7 @@
+- name: Set timezone to Asia/Shanghai
+  timezone:
+    name: Etc/UTC #Asia/Shanghai
+
 - name: JQ is present
   apt:
     name: jq

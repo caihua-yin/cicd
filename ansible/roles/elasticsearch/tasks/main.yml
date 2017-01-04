@@ -1,0 +1,12 @@
+- name: Container is running
+  docker_container:
+    name: elasticsearch
+    image: elasticsearch:5.1.1-alpine
+    state: started
+    env:
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+    ports:
+      - 9200:9200
+    volumes:
+      /data/elasticsearch:/usr/share/elasticsearch/data
+  tags: [elasticsearch]

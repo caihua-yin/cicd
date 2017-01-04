@@ -1,0 +1,14 @@
+- hosts: elk
+  remote_user: vagrant
+  become: true
+  roles:
+    - elasticsearch
+    - logstash
+    - kibana
+
+- hosts: yinc2-cluster
+  remote_user: vagrant
+  become: true
+  roles:
+    - rsyslog
+

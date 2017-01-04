@@ -67,6 +67,9 @@ sudo apt-get install -y apt-file
 echo "Install unzip..."
 sudo apt-get install -y unzip
 
+echo "Install xmllint..."
+sudo apt-get install -y libxml2-utils # Usage: echo "<xml string>" | xmllint --format -
+
 HOSTS="/etc/hosts"
 echo "Update $HOSTS..."
 grep 192.168.33.21 $HOSTS || cat >> $HOSTS << EOL
