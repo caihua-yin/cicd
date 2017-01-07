@@ -4,9 +4,5 @@ ports:
 directories:
   - /data/grafana
 
-files: [
-  {src: 'influxdb.conf', dest: '/data/influxdb/influxdb.conf'}
-]
-
 volumes:
   - /data/grafana:/var/lib/grafana

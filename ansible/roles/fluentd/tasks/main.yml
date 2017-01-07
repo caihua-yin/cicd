@@ -1,0 +1,30 @@
+- name: Directories are present
+  file:
+    dest: "{{ item.path }}"
+    state: directory
+    owner: vagrant
+    mode: "{{ item.mode }}"
+  with_items: "{{ directories }}"
+  tags: [fluentd]
+
+- name: Files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ files }}"
+  tags: [fluentd]
+
+- name: Container is running
+  docker_container:
+    name: fluentd
+    image: yinc2/fluentd
+    state: started
+    hostname: "{{ ansible_hostname }}"
+    ports:
+      - 24224:24224 # for TCP forward input
+      - 9880:9880 # for HTTP input
+    volumes:
+      - /data/fluentd/conf:/fluentd/etc
+    links:
+      - elasticsearch:db
+  tags: [fluentd]

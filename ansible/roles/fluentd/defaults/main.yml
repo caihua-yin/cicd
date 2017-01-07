@@ -1,0 +1,7 @@
+directories: [
+  { path: "/data/fluentd/conf", mode: "0755" }
+]
+
+files: [
+  { src: "fluent.conf", dest: "/data/fluentd/conf/fluent.conf" }
+]

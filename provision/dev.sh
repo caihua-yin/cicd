@@ -46,8 +46,13 @@ rm -f go$VERSION.$OS-$ARCH.tar.gz
 echo "Install python-pip..."
 sudo apt-get install -y python-pip
 
+echo "Install python-dev..."
+sudo apt-get install -y python-dev
+
 echo "Install virtualenv..."
 sudo pip install virtualenv
+echo "Create virtualenv..."
+virtualenv ~/virtualenv
 
 echo "Install cqlsh(Cassandra client)..."
 sudo pip install cqlsh==4.1.1
