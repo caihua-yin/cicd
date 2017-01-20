@@ -60,7 +60,7 @@ echo "Create virtualenv..."
 virtualenv ~/virtualenv
 
 echo "Install cqlsh(Cassandra client)..."
-sudo pip install cqlsh==4.1.1
+sudo pip install cqlsh==5.0.3
 
 echo "Generate SSH key pair..."
 stat /home/vagrant/.ssh/id_rsa || \
@@ -68,6 +68,7 @@ stat /home/vagrant/.ssh/id_rsa || \
 
 echo "Install postgresql-client-common (where psql included)..."
 sudo apt-get install -y postgresql-client-common
+sudo apt-get install -y postgresql-client-9.3
 
 echo "Install jq (JSAON Query)..."
 sudo apt-get install -y jq

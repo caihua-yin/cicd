@@ -1,0 +1,52 @@
+- name: Directories are present
+  file:
+    dest: "{{ item.path }}"
+    state: directory
+    owner: vagrant
+    mode: "{{ item.mode }}"
+  with_items: "{{ directories }}"
+  tags: [cassandra]
+
+- name: Files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ files }}"
+  tags: [cassandra]
+
+- name: Seed container is running
+  docker_container:
+    name: cassandra
+    image: cassandra:2.2.8
+    state: started
+    env:
+      CASSANDRA_BROADCAST_ADDRESS: "{{ broadcast_address }}"
+    ports:
+      - 7000:7000 # intra-node communication
+      - 7001:7001 # TLS intra-node communication
+      - 7199:7199 # JMX
+      - 9042:9042 # CQL
+      - 9160:9160 # thrift service
+    volumes:
+      - /data/cassandra:/var/lib/cassandra
+  when: seed is not defined
+  tags: [cassandra]
+
+- name: Containers are running
+  docker_container:
+    name: cassandra
+    image: cassandra:2.2.8
+    state: started
+    env:
+        CASSANDRA_SEEDS: "{{ seed }}"
+        CASSANDRA_BROADCAST_ADDRESS: "{{ broadcast_address }}"
+    ports:
+      - 7000:7000 # intra-node communication
+      - 7001:7001 # TLS intra-node communication
+      - 7199:7199 # JMX
+      - 9042:9042 # CQL
+      - 9160:9160 # thrift service
+    volumes:
+      - /data/cassandra:/var/lib/cassandra
+  when: seed is defined
+  tags: [cassandra]

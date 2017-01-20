@@ -45,6 +45,7 @@
   roles:
     - elasticsearch
     - logstash
+    - fluentd
     - kibana
 
 - hosts: yinc2-cluster

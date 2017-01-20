@@ -1,0 +1,8 @@
+directories: [
+  { path: "/data/postgresql/data", mode: "0755" },
+  { path: "/data/postgresql/etc", mode: "0755" }
+]
+
+files: [
+    {src: 'pg_hba.conf', dest: '/data/postgresql/etc/pg_hba.conf'}
+]

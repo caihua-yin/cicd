@@ -1,0 +1,6 @@
+directories: [
+  { path: "/data/cassandra", mode: "0755" }
+]
+
+files: [
+]

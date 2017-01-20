@@ -27,3 +27,13 @@
 [elk]
 192.168.33.22
 
+[jekins]
+192.168.33.23
+
+[postgresql]
+192.168.33.21
+
+[cassandra]
+192.168.33.21 broadcast_address="192.168.33.21"
+192.168.33.22 seed="192.168.33.21" broadcast_address="192.168.33.22"
+192.168.33.23 seed="192.168.33.21" broadcast_address="192.168.33.23"

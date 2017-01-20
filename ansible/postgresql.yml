@@ -1,0 +1,5 @@
+- hosts: postgresql
+  remote_user: vagrant
+  become: true
+  roles:
+    - postgresql

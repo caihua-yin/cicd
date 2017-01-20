@@ -1,0 +1,31 @@
+- name: Directories are present
+  file:
+    dest: "{{ item.path }}"
+    state: directory
+    owner: vagrant
+    mode: "{{ item.mode }}"
+  with_items: "{{ directories }}"
+  tags: [postgresql]
+
+- name: Files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ files }}"
+  tags: [postgresql]
+
+- name: Container is running
+  docker_container:
+    name: postgresql
+    image: paintedfox/postgresql
+    state: started
+    env:
+        USER: postgres
+        PASS: postgres
+        DB: bucket_contents.db
+    ports:
+      - 5432:5432
+    volumes:
+      - /data/postgresql/data:/data
+      - /data/postgresql/etc/pg_hba.conf:/etc/postgresql/9.3/main/pg_hba.conf
+  tags: [postgresql]

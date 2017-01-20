@@ -1,0 +1,5 @@
+- hosts: cassandra
+  remote_user: vagrant
+  become: true
+  roles:
+    - cassandra
