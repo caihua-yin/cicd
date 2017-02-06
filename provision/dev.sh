@@ -48,11 +48,17 @@ export GOPATH=$HOME/gopath
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 EOL
 
+echo "Install open JDK 7..."
+sudo apt-get install -y openjdk-7-jdk
+
 echo "Install python-pip..."
 sudo apt-get install -y python-pip
 
 echo "Install python-dev..."
 sudo apt-get install -y python-dev
+
+echo "Install libssl-dev..."
+sudo apt-get install libssl-dev
 
 echo "Install virtualenv..."
 sudo pip install virtualenv
