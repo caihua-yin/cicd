@@ -6,7 +6,7 @@
   roles:
     - influxdb
 
-- hosts: yinc2-cluster
+- hosts: influxdb #yinc2-cluster
   remote_user: vagrant
   become: true
   roles:

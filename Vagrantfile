@@ -25,9 +25,9 @@ Vagrant.configure(2) do |config|
       d.vm.network "private_network", ip: "192.168.33.2#{i}"
       d.vm.provider "virtualbox" do |v|
         if i == 2
-            v.memory = 2560 # Elasticsearch need reserve 1GB heap size to start, so use 2.5GB memory
+            v.memory = 2048 # Elasticsearch need reserve 1GB heap size to start, so use 2.5GB memory
         else
-            v.memory = 1024
+            v.memory = 2048
         end
       end
     end

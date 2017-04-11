@@ -13,14 +13,16 @@
   with_items: "{{ files }}"
   tags: [collectd]
 
-- name: Config collectd is generated based on data in consul and template
-  shell: "consul-template -once \
-          -template '/data/consul-template/collectd.ctmpl:/data/collectd/collectd.conf'"
+- name: Hostname in collectd.conf is updated
+  lineinfile:
+    destfile: /data/collectd/collectd.conf
+    regexp: '^Hostname'
+    line: 'Hostname {{ ansible_hostname }}'
   tags: [collectd]
 
 - name: Container is running
   docker_container:
-    image: yinc2/collectd
+    image: pataquets/collectd-jmx # Image yinc2/collectd does not contain JMX support
     name: collectd
     state: started
     volumes: "{{ volumes }}"
