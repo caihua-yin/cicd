@@ -1,0 +1,63 @@
+{
+    "clusterName": "chcg01_three_nodes",
+    "version": 1,
+    "datacenters": [
+        {
+            "dataNodes": [
+                {
+                    "disks": [
+                        {
+                            "capacityInBytes": 10737418240,
+                            "hardwareState": "AVAILABLE",
+                            "mountPath": "/data/ambry/disk1"
+                        },
+                        {
+                            "capacityInBytes": 10737418240,
+                            "hardwareState": "AVAILABLE",
+                            "mountPath": "/data/ambry/disk2"
+                        }
+                    ],
+                    "hardwareState": "AVAILABLE",
+                    "hostname": "prod01",
+                    "port": 6667
+                },
+                {
+                    "disks": [
+                        {
+                            "capacityInBytes": 10737418240,
+                            "hardwareState": "AVAILABLE",
+                            "mountPath": "/data/ambry/disk1"
+                        },
+                        {
+                            "capacityInBytes": 10737418240,
+                            "hardwareState": "AVAILABLE",
+                            "mountPath": "/data/ambry/disk2"
+                        }
+                    ],
+                    "hardwareState": "AVAILABLE",
+                    "hostname": "prod02",
+                    "port": 6667
+                }
+                ,
+                {
+                    "disks": [
+                        {
+                            "capacityInBytes": 10737418240,
+                            "hardwareState": "AVAILABLE",
+                            "mountPath": "/data/ambry/disk1"
+                        },
+                        {
+                            "capacityInBytes": 10737418240,
+                            "hardwareState": "AVAILABLE",
+                            "mountPath": "/data/ambry/disk2"
+                        }
+                    ],
+                    "hardwareState": "AVAILABLE",
+                    "hostname": "prod03",
+                    "port": 6667
+                }
+            ],
+            "name": "chcg01"
+        }
+    ]
+}

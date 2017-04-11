@@ -1,0 +1,23 @@
+directories: [
+  { path: "/data/ambry/bin", mode: "0755" },
+  { path: "/data/ambry/config", mode: "0755" },
+  { path: "/data/ambry/log", mode: "0755" },
+  { path: "/data/ambry/disk1", mode: "0755" },
+  { path: "/data/ambry/disk2", mode: "0755" }
+]
+
+files: [
+    {src: 'ambry-server', dest: '/etc/init.d/', mode: "0755"},
+    {src: 'ambry-frontend', dest: '/etc/init.d/', mode: "0755"},
+    {src: 'ambry.jar', dest: '/data/ambry/bin', mode: "0644"},
+    {src: 'layout-analyzer.py', dest: '/data/ambry/bin', mode: "0755"},
+    {src: 'HardwareLayout.json', dest: '/data/ambry/config', mode: "0644"},
+    {src: 'PartitionLayout.json', dest: '/data/ambry/config', mode: "0644"},
+    {src: 'log4j.properties', dest: '/data/ambry/config', mode: "0644"},
+    {src: 'server.properties', dest: '/data/ambry/config', mode: "0644"},
+    {src: 'frontend.properties', dest: '/data/ambry/config', mode: "0644"},
+    {src: 'DumpIndexTool.properties', dest: '/data/ambry/config', mode: "0644"},
+    {src: 'DumpLogTool.properties', dest: '/data/ambry/config', mode: "0644"},
+    {src: 'DumpDataTool.properties', dest: '/data/ambry/config', mode: "0644"},
+    {src: 'DumpReplicaTokenTool.properties', dest: '/data/ambry/config', mode: "0644"}
+]

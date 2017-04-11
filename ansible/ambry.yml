@@ -1,0 +1,5 @@
+- hosts: yinc2-cluster
+  remote_user: vagrant
+  become: true
+  roles:
+    - ambry

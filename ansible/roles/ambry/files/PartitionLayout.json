@@ -1,0 +1,50 @@
+{
+    "clusterName": "chcg01_three_nodes",
+    "version": 1,
+    "partitions": [
+        {
+            "id": 0,
+            "partitionState": "READ_WRITE",
+            "replicaCapacityInBytes": 1073741824,
+            "replicas": [
+                {
+                    "hostname": "prod01",
+                    "mountPath": "/data/ambry/disk1",
+                    "port": 6667
+                },
+                {
+                    "hostname": "prod02",
+                    "mountPath": "/data/ambry/disk1",
+                    "port": 6667
+                },
+                {
+                    "hostname": "prod03",
+                    "mountPath": "/data/ambry/disk1",
+                    "port": 6667
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "partitionState": "READ_WRITE",
+            "replicaCapacityInBytes": 1073741824,
+            "replicas": [
+                {
+                    "hostname": "prod01",
+                    "mountPath": "/data/ambry/disk2",
+                    "port": 6667
+                },
+                {
+                    "hostname": "prod02",
+                    "mountPath": "/data/ambry/disk2",
+                    "port": 6667
+                },
+                {
+                    "hostname": "prod03",
+                    "mountPath": "/data/ambry/disk2",
+                    "port": 6667
+                }
+            ]
+        }
+    ]
+}

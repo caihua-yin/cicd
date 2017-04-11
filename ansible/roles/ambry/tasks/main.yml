@@ -1,0 +1,54 @@
+- name: Directories are present
+  file:
+    dest: "{{ item.path }}"
+    state: directory
+    owner: vagrant
+    mode: "{{ item.mode }}"
+  with_items: "{{ directories }}"
+  tags: [ambry]
+
+- name: Files are copied
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
+  with_items: "{{ files }}"
+  tags: [ambry]
+
+- name: Server name is updated
+  lineinfile:
+    destfile: /data/ambry/config/server.properties
+    regexp: '^host\.name='
+    line: 'host.name={{ ansible_hostname }}'
+  tags: [ambry]
+
+- name: Frontend router name is updated
+  lineinfile:
+    destfile: /data/ambry/config/frontend.properties
+    regexp: '^router\.hostname='
+    line: 'router.hostname={{ ansible_hostname }}'
+  tags: [ambry]
+
+- name: Ambry server is running
+  service:
+    name: ambry-server
+    state: started
+  tags: [ambry]
+
+- name: Ambry frontend is running
+  service:
+    name: ambry-frontend
+    state: started
+  tags: [ambry]
+
+- name: Ambry server is stopped
+  service:
+    name: ambry-server
+    state: stopped
+  tags: [ambry-stop]
+
+- name: Ambry frontend is stopped
+  service:
+    name: ambry-frontend
+    state: stopped
+  tags: [ambry-stop]
