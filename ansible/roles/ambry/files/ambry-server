@@ -47,7 +47,7 @@ case "$1" in
                 --serverPropsFilePath $CONFIG_DIR/server.properties \
                 --hardwareLayoutFilePath $CONFIG_DIR/HardwareLayout.json \
                 --partitionLayoutFilePath $CONFIG_DIR/PartitionLayout.json \
-                >> $LOG_DIR/server.log &
+                > $LOG_DIR/server.log &
             echo $! > $PIDFILE
             # TODO: check start status
         else

@@ -5,7 +5,7 @@
     owner: vagrant
     mode: "{{ item.mode }}"
   with_items: "{{ directories }}"
-  tags: [ambry]
+  tags: [ambry-setup]
 
 - name: Files are copied
   copy:
@@ -13,33 +13,33 @@
     dest: "{{ item.dest }}"
     mode: "{{ item.mode }}"
   with_items: "{{ files }}"
-  tags: [ambry]
+  tags: [ambry-setup]
 
 - name: Server name is updated
   lineinfile:
     destfile: /data/ambry/config/server.properties
     regexp: '^host\.name='
     line: 'host.name={{ ansible_hostname }}'
-  tags: [ambry]
+  tags: [ambry-setup]
 
 - name: Frontend router name is updated
   lineinfile:
     destfile: /data/ambry/config/frontend.properties
     regexp: '^router\.hostname='
     line: 'router.hostname={{ ansible_hostname }}'
-  tags: [ambry]
+  tags: [ambry-setup]
 
 - name: Ambry server is running
   service:
     name: ambry-server
     state: started
-  tags: [ambry]
+  tags: [ambry-setup]
 
 - name: Ambry frontend is running
   service:
     name: ambry-frontend
     state: started
-  tags: [ambry]
+  tags: [ambry-setup]
 
 - name: Ambry server is stopped
   service:
@@ -52,3 +52,10 @@
     name: ambry-frontend
     state: stopped
   tags: [ambry-stop]
+
+- name: Ambry is cleaned up
+  file:
+    dest: "{{ item.path }}"
+    state: absent
+  with_items: "{{ directories }}"
+  tags: [ambry-cleanup]

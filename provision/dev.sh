@@ -48,15 +48,19 @@ export GOPATH=$HOME/gopath
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 EOL
 
+echo "Install httpstat..."
+# Usage: httpstat http://s-us.objectstorage.io
+go get -u github.com/davecheney/httpstat
+
 echo "Install open JDK 7..."
 sudo apt-get install -y openjdk-7-jdk
 
 # Install oracle java8
-#echo "Install oracle java 8..."
-#sudo add-apt-repository ppa:webupd8team/java -y
-#sudo apt-get update
-#sudo apt-get install oracle-java8-installer
-#sudo apt-get install oracle-java8-set-default
+echo "Install oracle java 8..."
+sudo add-apt-repository ppa:webupd8team/java -y
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+sudo apt-get install oracle-java8-set-default
 
 echo "Install python-pip..."
 sudo apt-get install -y python-pip
