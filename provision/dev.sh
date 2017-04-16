@@ -56,11 +56,11 @@ echo "Install open JDK 7..."
 sudo apt-get install -y openjdk-7-jdk
 
 # Install oracle java8
-echo "Install oracle java 8..."
-sudo add-apt-repository ppa:webupd8team/java -y
-sudo apt-get update
-sudo apt-get install oracle-java8-installer
-sudo apt-get install oracle-java8-set-default
+# echo "Install oracle java 8..."
+# sudo add-apt-repository ppa:webupd8team/java -y
+# sudo apt-get update
+# sudo apt-get install -y oracle-java8-installer
+# sudo apt-get install -y oracle-java8-set-default
 
 echo "Install python-pip..."
 sudo apt-get install -y python-pip
@@ -98,6 +98,9 @@ sudo apt-get install -y unzip
 
 echo "Install xmllint..."
 sudo apt-get install -y libxml2-utils # Usage: echo "<xml string>" | xmllint --format -
+
+echo "Install tree..."
+sudo apt-get install -y tree
 
 HOSTS="/etc/hosts"
 echo "Update $HOSTS..."

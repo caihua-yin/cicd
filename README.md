@@ -8,6 +8,7 @@ To run elasticsearch in prod02, the *vm.max_map_count* system parameter has been
 
 # Ansible Playbooks
 Run following commands on dev node (CWD as /vagrant/github.com/caihua-yin/cicd/ansible/)
+NOTE: Need deploy SSH public key to the target hosts first
 
 ## Deploy Cloud By One Command
 `ansible-playbook yinc2-cloud.yml -i inventory/prod`
