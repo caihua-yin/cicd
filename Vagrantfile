@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.synced_folder "/Users/yinc2/vagrant", "/vagrant"
+  config.vm.synced_folder "/Users/yincaihua/vagrant", "/vagrant"
 
   # Development
   config.vm.define "dev" do |d|

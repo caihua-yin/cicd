@@ -87,6 +87,9 @@ echo "Install postgresql-client-common (where psql included)..."
 sudo apt-get install -y postgresql-client-common
 sudo apt-get install -y postgresql-client-9.3
 
+echo "Install mysql-client-core..."
+sudo apt-get install -y mysql-client-core-5.6
+
 echo "Install jq (JSAON Query)..."
 sudo apt-get install -y jq
 
